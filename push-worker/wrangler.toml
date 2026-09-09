@@ -1,0 +1,24 @@
+name = "moron-prensa-push"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+
+# Revisa las noticias y envía los avisos cada 15 minutos.
+[triggers]
+crons = ["*/15 * * * *"]
+
+# El almacén de suscripciones. Reemplazar el id por el que devuelve:
+#   npx wrangler kv namespace create SUBS
+[[kv_namespaces]]
+binding = "SUBS"
+id = "RELLENAR_CON_EL_ID_DEL_NAMESPACE"
+
+[vars]
+# Origen del sitio publicado (para CORS) y URL del archivo de noticias.
+ALLOWED_ORIGIN = "https://moron-prensa.pages.dev"
+NOTAS_URL = "https://moron-prensa.pages.dev/data/notas.json"
+CONTACTO = "prensa@moron.gob.ar"
+# Clave pública VAPID (no es secreta; también va en docs/push-config.js).
+VAPID_PUBLIC = "RELLENAR_CON_LA_CLAVE_PUBLICA_VAPID"
+
+# La clave privada se carga aparte como secret:
+#   npx wrangler secret put VAPID_PRIVATE

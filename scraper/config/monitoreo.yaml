@@ -1,0 +1,154 @@
+# Configuración del Monitoreo de Prensa — Frente Renovador
+# ---------------------------------------------------------------------------
+# Misma lógica que la de Morón, con dos diferencias:
+#   1. Compuerta AMPLIADA: la nota entra si menciona "frente renovador" O a un
+#      actor central del espacio (Massa, Galmarini, Andreotti, Moreau, Setti,
+#      Giuliano, Caporiccio, Michel).
+#   2. exigir_termino: false  -> alcanza con pasar la compuerta; los niveles
+#      solo sirven para ordenar y resaltar.
+# ---------------------------------------------------------------------------
+
+matching:
+  context_window_words: 40
+
+exigir_termino: false
+
+# --- Compuerta (ampliada) ----------------------------------------------
+compuerta:
+  - "frente renovador"
+  - "sergio massa"
+  - "massa"
+  - "malena galmarini"
+  - "juan andreotti"
+  - "eduardo setti"
+  - "cecilia moreau"
+  - "diego giuliano"
+  - "francisco caporiccio"
+  - "guillermo michel"
+
+# --- Niveles (etiqueta / prioridad, no filtran) ----------------------
+niveles:
+  A:
+    etiqueta: "Espacio y referentes"
+    terminos:
+      - { id: frente_renovador, patron: "frente renovador", modo: phrase }
+      - { id: sergio_massa, patron: "sergio massa", modo: phrase }
+      - { id: massa, patron: "massa", modo: word }
+      - { id: malena_galmarini, patron: "malena galmarini", modo: phrase }
+      - { id: juan_andreotti, patron: "juan andreotti", modo: phrase }
+      - { id: eduardo_setti, patron: "eduardo setti", modo: phrase }
+      - { id: cecilia_moreau, patron: "cecilia moreau", modo: phrase }
+      - { id: diego_giuliano, patron: "diego giuliano", modo: phrase }
+      - { id: francisco_caporiccio, patron: "francisco caporiccio", modo: phrase }
+      - { id: guillermo_michel, patron: "guillermo michel", modo: phrase }
+      - { id: fr, patron: "fr", modo: word }
+      - { id: jovenes_fr, patron: "jovenes fr", modo: phrase }
+      - { id: juventud_fr, patron: "juventud fr", modo: phrase }
+      - { id: juventud_frente_renovador, patron: "juventud frente renovador", modo: phrase }
+      - { id: fundacion_encuentro, patron: "fundacion encuentro", modo: phrase }
+  B:
+    etiqueta: "Temas y territorio"
+    terminos:
+      - { id: juventud, patron: "juventud", modo: word }
+      - { id: argentina, patron: "argentina", modo: word }
+      - { id: la_plata, patron: "la plata", modo: phrase }
+      - { id: tigre, patron: "tigre", modo: word }
+      - { id: peronismo, patron: "peronismo", modo: word }
+      - { id: camara_de_diputados, patron: "camara de diputados", modo: phrase }
+      - { id: reelecciones_indefinidas, patron: "reelecciones indefinidas", modo: phrase }
+
+# --- Medios ----------------------------------------------------------
+# Nacionales. La gran mayoría de sus notas se descarta en la compuerta.
+medios:
+  - id: c5n
+    nombre: "C5N"
+    dominio: "c5n.com"
+    motor: sitemap_news
+    canales:
+      - { tipo: sitemap, url: "https://www.c5n.com/sitemap-news.xml" }
+      - { tipo: html, url: "https://www.c5n.com/politica" }
+
+  - id: lanacion
+    nombre: "La Nación"
+    dominio: "lanacion.com.ar"
+    motor: sitemap_news
+    canales:
+      - { tipo: sitemap, url: "https://www.lanacion.com.ar/sitemap-news.xml" }
+      - { tipo: html, url: "https://www.lanacion.com.ar/politica/" }
+
+  - id: clarin
+    nombre: "Clarín"
+    dominio: "clarin.com"
+    motor: rss
+    canales:
+      - { tipo: rss, url: "https://www.clarin.com/rss/politica/" }
+      - { tipo: rss, url: "https://www.clarin.com/rss/lo-ultimo/" }
+      - { tipo: html, url: "https://www.clarin.com/politica/" }
+
+  - id: lapoliticaonline
+    nombre: "La Política Online"
+    dominio: "lapoliticaonline.com"
+    motor: rss
+    canales:
+      - { tipo: rss, url: "https://www.lapoliticaonline.com/files/rss/politica.xml" }
+      - { tipo: rss, url: "https://www.lapoliticaonline.com/files/rss/provincia.xml" }
+      - { tipo: rss, url: "https://www.lapoliticaonline.com/files/rss/economia.xml" }
+      - { tipo: html, url: "https://www.lapoliticaonline.com/" }
+
+  - id: ambito
+    nombre: "Ámbito Financiero"
+    dominio: "ambito.com"
+    motor: rss
+    canales:
+      - { tipo: rss, url: "https://www.ambito.com/rss/pages/politica.xml" }
+      - { tipo: rss, url: "https://www.ambito.com/rss/pages/economia.xml" }
+      - { tipo: html, url: "https://www.ambito.com/" }
+
+  - id: pagina12
+    nombre: "Página 12"
+    dominio: "pagina12.com.ar"
+    motor: sitio_propio
+    # Sin RSS ni sitemap de noticias público: lectura HTML de portada y El País.
+    canales:
+      - { tipo: html, url: "https://www.pagina12.com.ar/" }
+      - { tipo: html, url: "https://www.pagina12.com.ar/secciones/el-pais" }
+
+  - id: tn
+    nombre: "TN"
+    dominio: "tn.com.ar"
+    motor: rss
+    canales:
+      - { tipo: rss, url: "https://tn.com.ar/arc/outboundfeeds/rss/category/politica/?outputType=xml" }
+      - { tipo: rss, url: "https://tn.com.ar/arc/outboundfeeds/rss/?outputType=xml" }
+      - { tipo: html, url: "https://tn.com.ar/politica/" }
+
+  - id: eleconomista
+    nombre: "El Economista"
+    dominio: "eleconomista.com.ar"
+    motor: wordpress
+    canales:
+      - { tipo: rss, url: "https://eleconomista.com.ar/feed/" }
+      - { tipo: html, url: "https://eleconomista.com.ar/" }
+
+  - id: infobae
+    nombre: "Infobae"
+    dominio: "infobae.com"
+    motor: rss
+    canales:
+      - { tipo: rss, url: "https://www.infobae.com/arc/outboundfeeds/rss/category/politica/?outputType=xml" }
+      - { tipo: rss, url: "https://www.infobae.com/arc/outboundfeeds/rss/?outputType=xml" }
+      - { tipo: html, url: "https://www.infobae.com/politica/" }
+
+  - id: perfil
+    nombre: "Perfil"
+    dominio: "perfil.com"
+    motor: rss
+    canales:
+      - { tipo: rss, url: "https://www.perfil.com/rss/politica" }
+      - { tipo: rss, url: "https://www.perfil.com/feed" }
+      - { tipo: html, url: "https://www.perfil.com/seccion/politica" }
+
+ingesta:
+  intervalo_minutos: 20
+  user_agent: "MonitoreoPrensaFR/1.0 (+contacto: monitoreo-fr@example.org)"
+  timeout_segundos: 15

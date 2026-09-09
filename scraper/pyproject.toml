@@ -1,0 +1,10 @@
+[project]
+name = "monitoreo-prensa-scraper"
+version = "0.1.0"
+description = "Scraper de prensa para la versión estática (GitHub Pages)"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"

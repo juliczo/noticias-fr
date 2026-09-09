@@ -1,0 +1,10 @@
+# Cloudflare sirve estos archivos. Forzamos que los datos no se cacheen para que
+# el panel siempre vea la última versión apenas el scraper la publica.
+/data/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/sw.js
+  Cache-Control: no-cache
+
+/push-config.js
+  Cache-Control: no-cache
