@@ -123,6 +123,7 @@
   .check .nm { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .check .count { margin-left:auto; font-size:12px; color:var(--muted); padding-left:6px; }
   .check:hover { color:var(--ink); }
+  .check-todos { font-weight:600; color:var(--ink); border-bottom:1px solid var(--border); padding-bottom:7px; margin-bottom:2px; }
   .seg { display:flex; border:1px solid var(--border-strong); border-radius:5px; overflow:hidden; }
   .seg button { flex:1; padding:7px 4px; font-size:12.5px; font-weight:500; background:var(--surface); color:var(--ink-soft);
     border:0; border-right:1px solid var(--border); }
@@ -340,6 +341,10 @@
       </div>
       <div class="rail-group">
         <span class="rail-label">Medio</span>
+        <label class="check check-todos">
+          <input type="checkbox" id="medioTodos">
+          <span class="nm">Seleccionar todos</span>
+        </label>
         <div class="medio-list" id="medioChecks"></div>
       </div>
       <div class="rail-group">
@@ -576,8 +581,20 @@
       cont.appendChild(lab);
     });
     cont.querySelectorAll("input").forEach(function(inp){
-      inp.addEventListener("change", function(){ filtro.medios[inp.dataset.medio] = inp.checked; render(); });
+      inp.addEventListener("change", function(){ filtro.medios[inp.dataset.medio] = inp.checked; pintarMedioTodos(); render(); });
     });
+    pintarMedioTodos();
+  }
+
+  // Casillero "Seleccionar todos" tipo filtro de Excel: marcado si están todos
+  // tildados, vacío si ninguno, con guion (indeterminado) si hay una mezcla.
+  function pintarMedioTodos(){
+    var chk = document.getElementById("medioTodos");
+    if (!chk) return;
+    var ids = Object.keys(filtro.medios);
+    var marcados = ids.filter(function(id){ return filtro.medios[id]; });
+    chk.checked = ids.length > 0 && marcados.length === ids.length;
+    chk.indeterminate = marcados.length > 0 && marcados.length < ids.length;
   }
 
   function estadoFuente(f){
@@ -1004,6 +1021,11 @@
   var deb;
   document.getElementById("q").addEventListener("input", function(e){
     filtro.q = e.target.value; clearTimeout(deb); deb = setTimeout(render, 200);
+  });
+  document.getElementById("medioTodos").addEventListener("change", function(e){
+    var marcar = e.target.checked;
+    Object.keys(filtro.medios).forEach(function(id){ filtro.medios[id] = marcar; });
+    pintarMedioChecks(); render();
   });
   document.querySelectorAll("#segNivel button").forEach(function(bt){
     bt.addEventListener("click", function(){
