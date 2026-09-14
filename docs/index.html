@@ -27,38 +27,38 @@
   :root {
     --ground:#f4f6ff; --surface:#ffffff; --surface-2:#eef0fb; --ink:#12142c; --ink-soft:#40436b;
     --muted:#6b6f95; --border:rgba(20,20,70,.10); --border-strong:rgba(20,20,70,.18);
-    --accent:#4b4bff; --accent-ink:#3730d6;
+    --accent:#2563eb; --accent-ink:#1d4ed8;
     --on-accent:#ffffff;
     --nivelB-ink:#0e7490; --term-bg:#eef0fb; --term-ink:#33366b;
     --good:#0f9d70; --warn:#b5760c; --crit:#c23a2e;
-    --hl-bg:rgba(58,58,245,.12); --hl-ink:#22228f; --focus:#3a3af5;
+    --hl-bg:rgba(37,99,235,.12); --hl-ink:#1e3a8a; --focus:#2563eb;
     --shadow-sm:0 1px 2px rgba(20,20,70,.08);
-    --shadow-lg:0 8px 24px rgba(20,20,70,.10), 0 30px 60px -28px rgba(58,58,245,.18);
+    --shadow-lg:0 8px 24px rgba(20,20,70,.10), 0 30px 60px -28px rgba(37,99,235,.18);
     --glow-1:transparent; --glow-2:transparent;
   }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
     --ground:#05051a; --surface:#0c0c33; --surface-2:#101041; --ink:#edeefc; --ink-soft:#cdcde8;
     --muted:#9d9dc6; --border:rgba(255,255,255,.10); --border-strong:rgba(255,255,255,.20);
-    --accent:#4b4bff; --accent-ink:#9aa0ff;
+    --accent:#3b82f6; --accent-ink:#60a5fa;
     --on-accent:#ffffff;
     --nivelB-ink:#22d3ee; --term-bg:rgba(255,255,255,.06); --term-ink:#cdcde8;
     --good:#14bd92; --warn:#e0a13c; --crit:#e0564b;
-    --hl-bg:rgba(75,75,255,.24); --hl-ink:#e6e7ff; --focus:#4b4bff;
+    --hl-bg:rgba(59,130,246,.24); --hl-ink:#e2ecff; --focus:#3b82f6;
     --shadow-sm:0 1px 2px rgba(0,0,0,.5);
-    --shadow-lg:0 8px 24px rgba(0,0,0,.45), 0 34px 70px -32px rgba(75,75,255,.4);
-    --glow-1:rgba(75,75,255,.20); --glow-2:rgba(34,211,238,.10);
+    --shadow-lg:0 8px 24px rgba(0,0,0,.45), 0 34px 70px -32px rgba(59,130,246,.4);
+    --glow-1:rgba(37,99,235,.22); --glow-2:rgba(34,211,238,.10);
   } }
   :root[data-theme="dark"] {
     --ground:#05051a; --surface:#0c0c33; --surface-2:#101041; --ink:#edeefc; --ink-soft:#cdcde8;
     --muted:#9d9dc6; --border:rgba(255,255,255,.10); --border-strong:rgba(255,255,255,.20);
-    --accent:#4b4bff; --accent-ink:#9aa0ff;
+    --accent:#3b82f6; --accent-ink:#60a5fa;
     --on-accent:#ffffff;
     --nivelB-ink:#22d3ee; --term-bg:rgba(255,255,255,.06); --term-ink:#cdcde8;
     --good:#14bd92; --warn:#e0a13c; --crit:#e0564b;
-    --hl-bg:rgba(75,75,255,.24); --hl-ink:#e6e7ff; --focus:#4b4bff;
+    --hl-bg:rgba(59,130,246,.24); --hl-ink:#e2ecff; --focus:#3b82f6;
     --shadow-sm:0 1px 2px rgba(0,0,0,.5);
-    --shadow-lg:0 8px 24px rgba(0,0,0,.45), 0 34px 70px -32px rgba(75,75,255,.4);
-    --glow-1:rgba(75,75,255,.20); --glow-2:rgba(34,211,238,.10);
+    --shadow-lg:0 8px 24px rgba(0,0,0,.45), 0 34px 70px -32px rgba(59,130,246,.4);
+    --glow-1:rgba(37,99,235,.22); --glow-2:rgba(34,211,238,.10);
   }
 
   body { background:var(--ground); color:var(--ink); font-size:15px; line-height:1.5;
@@ -109,9 +109,6 @@
   .shell { display:grid; grid-template-columns:250px minmax(0,1fr); gap:30px; max-width:1160px; margin:0 auto; padding:26px 22px 80px; }
   .rail { position:sticky; top:74px; align-self:start; display:flex; flex-direction:column; gap:22px;
     max-height:calc(100dvh - 74px - 20px); overflow-y:auto; padding-right:4px; padding-bottom:6px; }
-  .rail-logo { width:96px; height:96px; border-radius:50%; overflow:hidden; background:var(--surface-2);
-    border:1px solid var(--border); flex:none; }
-  .rail-logo img { width:100%; height:100%; object-fit:cover; display:block; }
   .rail-group { display:flex; flex-direction:column; gap:9px; }
   .rail-label { font-size:11px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); }
   .search { width:100%; padding:8px 10px; border-radius:5px; background:var(--surface); border:1px solid var(--border-strong);
@@ -326,7 +323,6 @@
 
   <div class="shell">
     <aside class="rail" id="rail">
-      <div class="rail-logo"><img src="./logo.png" alt="Monitoreo de Prensa · Frente Renovador"></div>
       <div class="rail-group">
         <label class="rail-label" for="q">Buscar</label>
         <input class="search" id="q" type="search" placeholder="Término o texto de la nota…" autocomplete="off">
