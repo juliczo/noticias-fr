@@ -1,10 +1,7 @@
-// Configuración de las notificaciones push. Se completa DESPUÉS de desplegar el
-// Worker de Cloudflare (ver push-worker/README.md).
+// Configuración de las notificaciones push del sitio FR.
 //
-// - PUSH_PUBLIC_KEY: la clave pública VAPID (la misma que va en el Worker).
-// - PUSH_WORKER_URL: la URL del Worker, sin barra final.
-//
-// Mientras estén vacías, el panel usa solo el aviso con la pestaña abierta.
+// - PUSH_PUBLIC_KEY: la clave pública VAPID (la misma que va en el Worker de push).
+// - PUSH_WORKER_URL: la URL del Worker de push, sin barra final.
 
-window.PUSH_PUBLIC_KEY = "";
-window.PUSH_WORKER_URL = "";
+window.PUSH_PUBLIC_KEY = "BFR5Oehu6w_ro9t-NfWtZYqE_4Z7qCrSzhS5mOBoYCTlrxjeCmXM1pMS1T7RwCA6UfPCU6RXkzIjgogWWEaS5bA";
+window.PUSH_WORKER_URL = "https://noticias-fr-push.munimoron.workers.dev";
