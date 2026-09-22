@@ -4,4 +4,4 @@
 // - PUSH_WORKER_URL: la URL del Worker de push, sin barra final.
 
 window.PUSH_PUBLIC_KEY = "BFR5Oehu6w_ro9t-NfWtZYqE_4Z7qCrSzhS5mOBoYCTlrxjeCmXM1pMS1T7RwCA6UfPCU6RXkzIjgogWWEaS5bA";
-window.PUSH_WORKER_URL = "https://noticias-fr-push.munimoron.workers.dev";
+window.PUSH_WORKER_URL = "https://noticias-fr-push.infogral.workers.dev";
